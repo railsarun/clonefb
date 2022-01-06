@@ -1,0 +1,5 @@
+<h1 style="text-align:center;color:green;">Welcome to CloneFb</h1>
+<p style="text-align:center;">
+<%=link_to 'SignUp ',new_user_registration_path%>
+<br><%=link_to 'SignIn ',new_user_session_path%></p>
+<center><%= button_to "Signout", destroy_user_session_path, method: :delete%></center>
