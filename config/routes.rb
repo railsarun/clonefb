@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  
+  resources :posts
+
+
+  #get "edit_liked/:id", to: "posts#edit_liked", :as => "edit_liked"
+  resources :likes,only:[:create,:destroy]
+
   get 'deshboard/index'
   get 'deshboard/show'
   get 'deshboard/new'
@@ -8,6 +15,8 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: "home#index"
   resources :users 
- #devise_for :patient_users, :controllers => { :registrations => :registrations }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :likes,only:[:create,:destroy]
+  
+
+                                                        
 end
