@@ -1,26 +1,31 @@
-<p id="notice"><%= notice %></p>
+   
+   <center>
+   
+   <div >
+  <%= link_to 'New Post', new_post_path, class:"btn btn-outline-warning" %><br><br>
+  <%=button_to "Signout", destroy_user_session_path, method: :delete ,class:"btn btn-danger"%>
+   <p id="notice"><%= notice %></p>
 
-<%=button_to "Signout", destroy_user_session_path, method: :delete %>
-      
+    <h1 style="text-align:center;color:green;">Posts</h1>
 
-<h1 style="text-align:center;color:green;">Posts</h1>
-
-<table>
-  <thead>
-    <tr>
+  <table>
+   <thead>
+     <tr>
+      <th>Date-Time</th>
       <th>Name</th>
       <th>Title</th>
       <th>Description</th>
       <th>Age</th>
       <th>Address</th>
       <th>Image</th>
-      <th colspan="3"></th>
-    </tr>
+      <th colspan="6"></th>
+     </tr>
   </thead>
 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td><%= post.update_at %></td>
         <td><%= post.name %></td>
         <td><%= post.title %></td>
         <td><%= post.description %></td>
@@ -28,31 +33,34 @@
         <td><%= post.address %></td>
         <td><%= image_tag post.image ,:size => '160x100'%></td>
         <td>
-            <p>
-                <%like=current_user.likes.find_by(post: post)%>
-                <form action="/likes" method="post">
-                <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-                <input type="hidden" name="like[post_id]" value="<%=post.id%>">
-                <p><%= post.likes.count %>Likes</p>  <input type="submit" value="likes">
-                </form>
+                <%# <%like=current_user.likes.find_by(post: post)%>
+                <p><%= post.likes.count %>Likes</p>
+                <%=link_to "Like",likes_path(post_id:post.id),class:"btn btn-outline-primary"%>
                   
             </p>
+            
+            
         </td>
-        <td><%= link_to 'Show', post %></td>
+        <td>
+        <th><%= link_to 'View', post ,class: "btn btn-info "%></th>
         <% if current_user.id == post.user_id %>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>  
+          <th><%= link_to 'Edit', edit_post_path(post), class: "btn btn-secondary"%></th>  
+        
           <%end%>
         <% if current_user.id == post.user_id %>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-black"%></th>
         <%end%>
         </tr>
     <% end %>
-        
+        </td>
       
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Post', new_post_path %><br><br>
+<%= link_to 'New Post', new_post_path, class: "btn btn-warning text-black" %><br><br>
+<%=button_to "Signout", destroy_user_session_path, method: :delete ,class:"btn btn-danger"%>
 
+</div>
+<center>

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   
-  resources :posts
+  resources :posts do
+    resources :comments,only: [:create]
+  end
 
 
-  #get "edit_liked/:id", to: "posts#edit_liked", :as => "edit_liked"
-  resources :likes,only:[:create,:destroy]
+ # get "liked/:id", to: "likes#show", :as => "like"
+  resources :likes, only:[:index, :destroy]
 
   get 'deshboard/index'
   get 'deshboard/show'
@@ -15,8 +17,9 @@ Rails.application.routes.draw do
   get 'home/index'
   root to: "home#index"
   resources :users 
-  resources :likes,only:[:create,:destroy]
+  #resources :likes,only:[:create,:destroy]
   
+  #likes POST   /likes(.:format)                      likes#create
 
                                                         
 end

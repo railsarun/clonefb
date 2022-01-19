@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy liked]
-
+  before_action :set_post, only: %i[edit update destroy liked]
+   before_action :current_user
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    
+    @post=Post.find(params[:id])
   end
 
   
@@ -40,6 +40,7 @@ class PostsController < ApplicationController
   
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+
     respond_to do |format|
       #if (user_signed_in? && (current_user.id == @job.user_id))
         #link_to "Edit", edit_job_path(@job), class: "btn btn-sm btn-default"
@@ -72,6 +73,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:name, :title, :description, :age, :address, :image,:likes,:comments)
+      params.require(:post).permit(:name, :title, :description, :age, :address, :image,:likes,:comments,:create_at,:update_at)
     end
 end

@@ -10,7 +10,20 @@
       </ul>
     </div>
   <% end %>
+   
+   <div class="field">
+    <%= form.label :Date %>
+    <%= form.date_field :create_at%>
+  </div>
 
+
+
+ <div class="field">
+   <%= form.label :Time %>
+   <%= form.time_field :update_at%>
+ </div>
+  
+  
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -45,6 +58,8 @@
     <%= form.file_field :image,class:"form-control"%>
   </div>
   
+  
+
 <br>
 <br>
  <div class="actions">

@@ -1,5 +1,14 @@
-<h1 style="text-align:center;color:green;">Welcome to CloneFb</h1>
-<p style="text-align:center;">
-<%=link_to 'SignUp ',new_user_registration_path%>
-<br><%=link_to 'SignIn ',new_user_session_path%></p>
-<center><%= button_to "Signout", destroy_user_session_path, method: :delete%></center>
+
+
+<div class="container" id="home-container">
+  <div class="jumbotron text-center text-success">
+    <h1 style="text-align:center;color:green;" class="display-4">Welcome to CloneFb</h1>
+    <p class="lead">Facebook helps you connect and share with the people in your life.</p>
+    <hr class="my-4"><hr>
+    
+   
+    <p style="text-align:center;">
+    <button type="button" class="btn btn-warning"><%=link_to 'SignUp ',new_user_registration_path%></button>
+    <button type="button" class="btn btn-warning"><%=link_to 'SignIn ',new_user_session_path%></button>
+  </div>
+</div>
